@@ -10,6 +10,6 @@ public:
 
 
 private:
-	int **_myArr;
+	double **_myArr;
 	int _length, _height;
 };
