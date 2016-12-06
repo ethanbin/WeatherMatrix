@@ -3,12 +3,13 @@
 class Matrix
 {
 public:
-	Matrix();
+	Matrix(int,int);
 	~Matrix();
+	void operator = (const Matrix &);
 
 
 
 private:
-	int **myArr;
-	int length, height;
+	int **_myArr;
+	int _length, _height;
 };
