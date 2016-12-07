@@ -3,6 +3,7 @@
 class Matrix
 {
 public:
+	Matrix();
 	Matrix(int,int);
 	~Matrix();
 	void operator = (const Matrix &);

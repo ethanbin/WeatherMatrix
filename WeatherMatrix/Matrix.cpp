@@ -1,5 +1,11 @@
 #include"Matrix.h"
 
+Matrix::Matrix()
+{
+	_length = 1;
+	_height = 1;
+}
+
 Matrix::Matrix(int l, int h)
 {
 	_length = l;

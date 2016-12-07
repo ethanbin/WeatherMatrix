@@ -4,7 +4,7 @@
 #include<fstream>
 
 namespace WeatherMatrix {
-	//Matrix WeatherMatrix;
+	Matrix WeatherMatrix;
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
