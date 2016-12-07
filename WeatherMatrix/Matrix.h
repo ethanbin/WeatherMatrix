@@ -6,7 +6,7 @@ public:
 	Matrix(int,int);
 	~Matrix();
 	void operator = (const Matrix &);
-
+	//double monthAvg()
 
 
 private:

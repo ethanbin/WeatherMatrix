@@ -33,3 +33,4 @@ void Matrix::operator = (const Matrix & copyFrom)
 			_myArr[i][j] = copyFrom._myArr[i][j];
 }
 
+//double Matrix::
