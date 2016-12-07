@@ -108,27 +108,30 @@ namespace WeatherMatrix {
 				L"January", L"Febrary", L"March", L"April", L"May",
 					L"June", L"July", L"August", L"September", L"October", L"November", L"December"
 			});
-			this->monthBox->Location = System::Drawing::Point(13, 13);
+			this->monthBox->Location = System::Drawing::Point(15, 18);
+			this->monthBox->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->monthBox->Name = L"monthBox";
-			this->monthBox->Size = System::Drawing::Size(121, 21);
+			this->monthBox->Size = System::Drawing::Size(140, 26);
 			this->monthBox->TabIndex = 1;
 			this->monthBox->Text = L"Select Month";
 			// 
 			// yearBox
 			// 
-			this->yearBox->Location = System::Drawing::Point(155, 14);
+			this->yearBox->Location = System::Drawing::Point(181, 19);
+			this->yearBox->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->yearBox->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 2016, 0, 0, 0 });
 			this->yearBox->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1869, 0, 0, 0 });
 			this->yearBox->Name = L"yearBox";
-			this->yearBox->Size = System::Drawing::Size(120, 20);
+			this->yearBox->Size = System::Drawing::Size(140, 23);
 			this->yearBox->TabIndex = 2;
 			this->yearBox->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1869, 0, 0, 0 });
 			// 
 			// avgMonthEvent
 			// 
-			this->avgMonthEvent->Location = System::Drawing::Point(13, 38);
+			this->avgMonthEvent->Location = System::Drawing::Point(15, 53);
+			this->avgMonthEvent->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->avgMonthEvent->Name = L"avgMonthEvent";
-			this->avgMonthEvent->Size = System::Drawing::Size(121, 52);
+			this->avgMonthEvent->Size = System::Drawing::Size(141, 72);
 			this->avgMonthEvent->TabIndex = 3;
 			this->avgMonthEvent->Text = L"Search Average Temperature of a Month from Each Year";
 			this->avgMonthEvent->UseVisualStyleBackColor = true;
@@ -136,9 +139,10 @@ namespace WeatherMatrix {
 			// 
 			// avgYearEvent
 			// 
-			this->avgYearEvent->Location = System::Drawing::Point(154, 38);
+			this->avgYearEvent->Location = System::Drawing::Point(179, 53);
+			this->avgYearEvent->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->avgYearEvent->Name = L"avgYearEvent";
-			this->avgYearEvent->Size = System::Drawing::Size(121, 52);
+			this->avgYearEvent->Size = System::Drawing::Size(141, 72);
 			this->avgYearEvent->TabIndex = 4;
 			this->avgYearEvent->Text = L"Find Average Temperature of Given Year";
 			this->avgYearEvent->UseVisualStyleBackColor = true;
@@ -146,9 +150,10 @@ namespace WeatherMatrix {
 			// 
 			// highestMonthEvent
 			// 
-			this->highestMonthEvent->Location = System::Drawing::Point(13, 99);
+			this->highestMonthEvent->Location = System::Drawing::Point(15, 137);
+			this->highestMonthEvent->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->highestMonthEvent->Name = L"highestMonthEvent";
-			this->highestMonthEvent->Size = System::Drawing::Size(121, 52);
+			this->highestMonthEvent->Size = System::Drawing::Size(141, 72);
 			this->highestMonthEvent->TabIndex = 5;
 			this->highestMonthEvent->Text = L"Find Highest Temperature of a Month for Each Year";
 			this->highestMonthEvent->UseVisualStyleBackColor = true;
@@ -156,9 +161,10 @@ namespace WeatherMatrix {
 			// 
 			// highestYearEvent
 			// 
-			this->highestYearEvent->Location = System::Drawing::Point(154, 99);
+			this->highestYearEvent->Location = System::Drawing::Point(179, 137);
+			this->highestYearEvent->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->highestYearEvent->Name = L"highestYearEvent";
-			this->highestYearEvent->Size = System::Drawing::Size(121, 52);
+			this->highestYearEvent->Size = System::Drawing::Size(141, 72);
 			this->highestYearEvent->TabIndex = 6;
 			this->highestYearEvent->Text = L"Find Highest Monthly Temperate Within a Year";
 			this->highestYearEvent->UseVisualStyleBackColor = true;
@@ -166,9 +172,10 @@ namespace WeatherMatrix {
 			// 
 			// dateTempEvent
 			// 
-			this->dateTempEvent->Location = System::Drawing::Point(83, 157);
+			this->dateTempEvent->Location = System::Drawing::Point(97, 217);
+			this->dateTempEvent->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->dateTempEvent->Name = L"dateTempEvent";
-			this->dateTempEvent->Size = System::Drawing::Size(121, 52);
+			this->dateTempEvent->Size = System::Drawing::Size(141, 72);
 			this->dateTempEvent->TabIndex = 7;
 			this->dateTempEvent->Text = L"Find Month\'s Average Temperature for the Given Year";
 			this->dateTempEvent->UseVisualStyleBackColor = true;
@@ -177,17 +184,18 @@ namespace WeatherMatrix {
 			// outputBox
 			// 
 			this->outputBox->Enabled = false;
-			this->outputBox->Location = System::Drawing::Point(12, 216);
+			this->outputBox->Location = System::Drawing::Point(14, 299);
+			this->outputBox->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->outputBox->Name = L"outputBox";
-			this->outputBox->Size = System::Drawing::Size(264, 20);
+			this->outputBox->Size = System::Drawing::Size(308, 23);
 			this->outputBox->TabIndex = 8;
 			this->outputBox->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
 			// MyForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(7, 18);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(289, 248);
+			this->ClientSize = System::Drawing::Size(337, 343);
 			this->Controls->Add(this->outputBox);
 			this->Controls->Add(this->dateTempEvent);
 			this->Controls->Add(this->highestYearEvent);
@@ -196,6 +204,9 @@ namespace WeatherMatrix {
 			this->Controls->Add(this->avgMonthEvent);
 			this->Controls->Add(this->yearBox);
 			this->Controls->Add(this->monthBox);
+			this->Font = (gcnew System::Drawing::Font(L"Trebuchet MS", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->yearBox))->EndInit();
