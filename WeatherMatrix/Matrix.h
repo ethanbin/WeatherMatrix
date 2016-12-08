@@ -19,7 +19,7 @@ public:
 
 	void operator = (const Matrix &);
 	friend std::istream &operator >> (std::istream  &input, Matrix &M) {
-		if (M._columnCount == M._length || M._rowCount == M._height)
+		if (M._columnCount > M._length || M._rowCount > M._height)
 			throw("Istream operator input exceeded Matrix bounds");
 
 		input >> M._myArr[M._rowCount][M._columnCount];
