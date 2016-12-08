@@ -50,7 +50,6 @@ artifacts/
 **/Properties/launchSettings.json
 
 #ADDED BY ETHAN - START
-*.suo
 *.log
 *.tlog
 *.Cache
