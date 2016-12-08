@@ -133,7 +133,7 @@ namespace WeatherMatrix {
 			// 
 			this->yearBox->Location = System::Drawing::Point(181, 19);
 			this->yearBox->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
-			this->yearBox->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 2016, 0, 0, 0 });
+			this->yearBox->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 2015, 0, 0, 0 });
 			this->yearBox->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1869, 0, 0, 0 });
 			this->yearBox->Name = L"yearBox";
 			this->yearBox->Size = System::Drawing::Size(140, 23);
