@@ -65,7 +65,7 @@ double Matrix::avgOfMonth(int monthIndex) //find average temperature of a month
 double Matrix::highestMonth(int monthIndex) //find highest temperature of a month
 {
 	double highestMonth = _myArr[0][monthIndex];
-	for (int i = 0; i < _length; i++)
+	for (int i = 0; i < _height; i++)
 	{
 		if (highestMonth < _myArr[i][monthIndex])
 			highestMonth = _myArr[i][monthIndex];
@@ -77,9 +77,9 @@ double Matrix::highestMonth(int monthIndex) //find highest temperature of a mont
 double Matrix::avgOfyear(int yearIndex) //find average temperature of a year
 {
 	double average = 0;
-	for (int i = 0; i < _height; i++)
+	for (int i = 0; i < _length; i++)
 		average += _myArr[yearIndex][i];
-	return average / _height;
+	return average / _length;
 }
 
 double Matrix::highestInYear(int yearIndex) //find highest monthly temperature within a given year
