@@ -267,14 +267,16 @@ namespace WeatherMatrix {
 		int month = monthArrayValue(monthBox->Text);
 		if (month == -1)
 			MessageBox::Show("No Month Entered!");
-		outputBox->Text = System::Convert::ToString(WeatherMatrix.avgOfMonth(month));
+		else
+			outputBox->Text = System::Convert::ToString(WeatherMatrix.avgOfMonth(month));
 		
 	}
 	private: System::Void highestMonthEvent_Click(System::Object^  sender, System::EventArgs^  e) {
 		int month = monthArrayValue(monthBox->Text);
 		if (month == -1)
 			MessageBox::Show("No Month Entered!");
-		outputBox->Text = System::Convert::ToString(WeatherMatrix.highestMonth(month));
+		else
+			outputBox->Text = System::Convert::ToString(WeatherMatrix.highestMonth(month));
 	}
 
 	private: System::Void avgYearEvent_Click(System::Object^  sender, System::EventArgs^  e) {
