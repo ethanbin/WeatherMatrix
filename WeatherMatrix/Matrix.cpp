@@ -1,15 +1,16 @@
 #include"Matrix.h"
+#include<string>
 
 Matrix::Matrix()
 {
-	_length = 1;
+	_length = 12; //hardcoded because there will always be 12 months in a year
 	_height = 1;
 }
 
-Matrix::Matrix(int l, int h)
+Matrix::Matrix(int h, int l)
 {
-	_length = l;
 	_height = h;
+	_length = l;
 
 	_myArr = new double*[_height];
 
@@ -24,19 +25,31 @@ Matrix::~Matrix()
 	delete[] _myArr;
 }
 
+std::string Matrix::testProperReadin()
+{
+	std::string sendBack = "";
+
+	for (int i = 0; i < _height; i++)
+	{
+		for (int j = 0; j < _length; j++)
+			sendBack += std::to_string(_myArr[i][j]) + "\t";
+		sendBack += "\n\n";
+	}
+
+	return sendBack;
+}
+
 void Matrix::operator = (const Matrix & copyFrom)
 {
+	_height = copyFrom._height;
+	_length = copyFrom._length;
+
 	_myArr = new double*[_height];
 
 	for (int i = 0; i < _height; i++)
 		_myArr[i] = new double[_length];
 
-	_length = copyFrom._length;
-	_height = copyFrom._height;
-
-	for (int i = 0; i < _length; i++)
-		for (int j = 0; j < _height; j++)
+	for (int i = 0; i < _height; i++)
+		for (int j = 0; j < _length; j++)
 			_myArr[i][j] = copyFrom._myArr[i][j];
 }
-
-//double Matrix::

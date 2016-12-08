@@ -2,6 +2,8 @@
 #include"Matrix.h"
 #include<string>
 #include<fstream>
+#include <msclr\marshal_cppstd.h>
+
 
 namespace WeatherMatrix {
 	Matrix WeatherMatrix;
@@ -35,12 +37,23 @@ namespace WeatherMatrix {
 
 			std::string lineCollector;
 			int numLines=0;
-			//for (; WeatherMatrixFile.eof(); numLines++) { getline(WeatherMatrixFile, lineCollector); }
-			//WeatherMatrix.resize(numLines);
+			for (; !WeatherMatrixFile.eof(); numLines++) { getline(WeatherMatrixFile, lineCollector); }
+			Matrix readinMatrix(numLines, 12); //hardcoded this as 12 because there will always be just 12 months
+
+			WeatherMatrixFile.clear();					//resets eof
+			WeatherMatrixFile.seekg(0, std::ios::beg);	//goes back to first line
 
 
+			for (int i = 0; i < readinMatrix.row(); i++)
+			{
+				for (int j = 0; j < readinMatrix.column(); j++)
+				{
+					WeatherMatrixFile >> readinMatrix;
+					WeatherMatrixFile.ignore();
+				}
 
-
+			}
+			WeatherMatrix = readinMatrix;
 			WeatherMatrixFile.close();
 		}
 
@@ -72,6 +85,7 @@ namespace WeatherMatrix {
 
 
 	private: System::Windows::Forms::TextBox^  outputBox;
+	private: System::Windows::Forms::RichTextBox^  testBox;
 
 
 
@@ -98,6 +112,7 @@ namespace WeatherMatrix {
 			this->highestYearEvent = (gcnew System::Windows::Forms::Button());
 			this->dateTempEvent = (gcnew System::Windows::Forms::Button());
 			this->outputBox = (gcnew System::Windows::Forms::TextBox());
+			this->testBox = (gcnew System::Windows::Forms::RichTextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->yearBox))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -191,11 +206,20 @@ namespace WeatherMatrix {
 			this->outputBox->TabIndex = 8;
 			this->outputBox->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
+			// testBox
+			// 
+			this->testBox->Location = System::Drawing::Point(3, 12);
+			this->testBox->Name = L"testBox";
+			this->testBox->Size = System::Drawing::Size(300, 319);
+			this->testBox->TabIndex = 9;
+			this->testBox->Text = L"";
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(7, 18);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(337, 343);
+			this->Controls->Add(this->testBox);
 			this->Controls->Add(this->outputBox);
 			this->Controls->Add(this->dateTempEvent);
 			this->Controls->Add(this->highestYearEvent);
@@ -217,13 +241,17 @@ namespace WeatherMatrix {
 #pragma endregion
 	private: System::Void avgMonthEvent_Click(System::Object^  sender, System::EventArgs^  e) {
 	}
-private: System::Void highestMonthEvent_Click(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void avgYearEvent_Click(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void highestYearEvent_Click(System::Object^  sender, System::EventArgs^  e) {
-}
-private: System::Void dateTempEvent_Click(System::Object^  sender, System::EventArgs^  e) {
-}
+	private: System::Void highestMonthEvent_Click(System::Object^  sender, System::EventArgs^  e) {
+	}
+	private: System::Void avgYearEvent_Click(System::Object^  sender, System::EventArgs^  e) {
+		std::string test = WeatherMatrix.testProperReadin();
+		String^ testing = gcnew String(test.c_str());
+
+		testBox->Text = testing;
+	}
+	private: System::Void highestYearEvent_Click(System::Object^  sender, System::EventArgs^  e) {
+	}
+	private: System::Void dateTempEvent_Click(System::Object^  sender, System::EventArgs^  e) {
+	}
 };
 }
