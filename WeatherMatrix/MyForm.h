@@ -4,7 +4,7 @@
 #include<fstream>
 #include <msclr\marshal_cppstd.h>
 
-
+ 
 namespace WeatherMatrix {
 	Matrix WeatherMatrix;
 	using namespace System;
@@ -85,7 +85,7 @@ namespace WeatherMatrix {
 
 
 	private: System::Windows::Forms::TextBox^  outputBox;
-	private: System::Windows::Forms::RichTextBox^  testBox;
+
 
 
 
@@ -112,7 +112,6 @@ namespace WeatherMatrix {
 			this->highestYearEvent = (gcnew System::Windows::Forms::Button());
 			this->dateTempEvent = (gcnew System::Windows::Forms::Button());
 			this->outputBox = (gcnew System::Windows::Forms::TextBox());
-			this->testBox = (gcnew System::Windows::Forms::RichTextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->yearBox))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -120,7 +119,7 @@ namespace WeatherMatrix {
 			// 
 			this->monthBox->FormattingEnabled = true;
 			this->monthBox->Items->AddRange(gcnew cli::array< System::Object^  >(12) {
-				L"January", L"Febrary", L"March", L"April", L"May",
+				L"January", L"February", L"March", L"April", L"May",
 					L"June", L"July", L"August", L"September", L"October", L"November", L"December"
 			});
 			this->monthBox->Location = System::Drawing::Point(15, 18);
@@ -148,7 +147,7 @@ namespace WeatherMatrix {
 			this->avgMonthEvent->Name = L"avgMonthEvent";
 			this->avgMonthEvent->Size = System::Drawing::Size(141, 72);
 			this->avgMonthEvent->TabIndex = 3;
-			this->avgMonthEvent->Text = L"Search Average Temperature of a Month from Each Year";
+			this->avgMonthEvent->Text = L"Find Average Temperature of a Month";
 			this->avgMonthEvent->UseVisualStyleBackColor = true;
 			this->avgMonthEvent->Click += gcnew System::EventHandler(this, &MyForm::avgMonthEvent_Click);
 			// 
@@ -159,7 +158,7 @@ namespace WeatherMatrix {
 			this->avgYearEvent->Name = L"avgYearEvent";
 			this->avgYearEvent->Size = System::Drawing::Size(141, 72);
 			this->avgYearEvent->TabIndex = 4;
-			this->avgYearEvent->Text = L"Find Average Temperature of Given Year";
+			this->avgYearEvent->Text = L"Find Average Temperature of a Year";
 			this->avgYearEvent->UseVisualStyleBackColor = true;
 			this->avgYearEvent->Click += gcnew System::EventHandler(this, &MyForm::avgYearEvent_Click);
 			// 
@@ -170,7 +169,7 @@ namespace WeatherMatrix {
 			this->highestMonthEvent->Name = L"highestMonthEvent";
 			this->highestMonthEvent->Size = System::Drawing::Size(141, 72);
 			this->highestMonthEvent->TabIndex = 5;
-			this->highestMonthEvent->Text = L"Find Highest Temperature of a Month for Each Year";
+			this->highestMonthEvent->Text = L"Find Highest Temperature of a Month";
 			this->highestMonthEvent->UseVisualStyleBackColor = true;
 			this->highestMonthEvent->Click += gcnew System::EventHandler(this, &MyForm::highestMonthEvent_Click);
 			// 
@@ -181,7 +180,7 @@ namespace WeatherMatrix {
 			this->highestYearEvent->Name = L"highestYearEvent";
 			this->highestYearEvent->Size = System::Drawing::Size(141, 72);
 			this->highestYearEvent->TabIndex = 6;
-			this->highestYearEvent->Text = L"Find Highest Monthly Temperate Within a Year";
+			this->highestYearEvent->Text = L"Find Highest Monthly Temperate Within a Given Year";
 			this->highestYearEvent->UseVisualStyleBackColor = true;
 			this->highestYearEvent->Click += gcnew System::EventHandler(this, &MyForm::highestYearEvent_Click);
 			// 
@@ -192,7 +191,7 @@ namespace WeatherMatrix {
 			this->dateTempEvent->Name = L"dateTempEvent";
 			this->dateTempEvent->Size = System::Drawing::Size(141, 72);
 			this->dateTempEvent->TabIndex = 7;
-			this->dateTempEvent->Text = L"Find Month\'s Average Temperature for the Given Year";
+			this->dateTempEvent->Text = L"Find Given Month\'s Average Temperature for the Given Year";
 			this->dateTempEvent->UseVisualStyleBackColor = true;
 			this->dateTempEvent->Click += gcnew System::EventHandler(this, &MyForm::dateTempEvent_Click);
 			// 
@@ -206,20 +205,11 @@ namespace WeatherMatrix {
 			this->outputBox->TabIndex = 8;
 			this->outputBox->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
-			// testBox
-			// 
-			this->testBox->Location = System::Drawing::Point(3, 12);
-			this->testBox->Name = L"testBox";
-			this->testBox->Size = System::Drawing::Size(300, 319);
-			this->testBox->TabIndex = 9;
-			this->testBox->Text = L"";
-			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(7, 18);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(337, 343);
-			this->Controls->Add(this->testBox);
 			this->Controls->Add(this->outputBox);
 			this->Controls->Add(this->dateTempEvent);
 			this->Controls->Add(this->highestYearEvent);
@@ -238,20 +228,58 @@ namespace WeatherMatrix {
 			this->PerformLayout();
 
 		}
+
+		int monthArrayValue(String^ month)
+		{
+			if (month == "Januray")
+				return 0;
+			if (month == "February")
+				return 1;
+			if (month == "March")
+				return 2;
+			if (month == "April")
+				return 3;
+			if (month == "May")
+				return 4;
+			if (month == "June")
+				return 5;
+			if (month == "July")
+				return 6;
+			if (month == "August")
+				return 7;
+			if (month == "September")
+				return 8;
+			if (month == "October")
+				return 9;
+			if (month == "November")
+				return 10;
+			if (month == "December")
+				return 11;
+			else return -1;
+		}
+		int yearArrayValue(String^ year)
+		{
+			return (int::Parse(year) - 1869);
+		}
+
 #pragma endregion
 	private: System::Void avgMonthEvent_Click(System::Object^  sender, System::EventArgs^  e) {
+
+		outputBox->Text = "hello";
 	}
 	private: System::Void highestMonthEvent_Click(System::Object^  sender, System::EventArgs^  e) {
 	}
 	private: System::Void avgYearEvent_Click(System::Object^  sender, System::EventArgs^  e) {
-		std::string test = WeatherMatrix.testProperReadin();
-		String^ testing = gcnew String(test.c_str());
-
-		testBox->Text = testing;
 	}
 	private: System::Void highestYearEvent_Click(System::Object^  sender, System::EventArgs^  e) {
 	}
 	private: System::Void dateTempEvent_Click(System::Object^  sender, System::EventArgs^  e) {
+		int year = yearArrayValue(yearBox->Text);
+		int month = monthArrayValue(monthBox->Text);
+		if (month == -1)
+			MessageBox::Show("No Month Entered!");
+		else
+			outputBox->Text = System::Convert::ToString(WeatherMatrix.monthTemp(year,month));
 	}
 };
 }

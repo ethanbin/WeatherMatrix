@@ -11,6 +11,11 @@ public:
 	~Matrix();
 
 	std::string testProperReadin();
+	double avgOfMonth(int monthIndex);
+	double highestMonth(int monthIndex);
+	double avgOfyear(int yearIndex);
+	double highestInYear(int yearIndex);
+	double monthTemp(int yearIndex, int monthIndex);
 
 	void operator = (const Matrix &);
 	friend std::istream &operator >> (std::istream  &input, Matrix &M) {
