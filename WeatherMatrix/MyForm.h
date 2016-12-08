@@ -222,7 +222,7 @@ namespace WeatherMatrix {
 				static_cast<System::Byte>(0)));
 			this->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->Name = L"MyForm";
-			this->Text = L"MyForm";
+			this->Text = L"Monthly Temperature Data";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->yearBox))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
