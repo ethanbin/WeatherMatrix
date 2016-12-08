@@ -231,7 +231,7 @@ namespace WeatherMatrix {
 
 		int monthArrayValue(String^ month)
 		{
-			if (month == "Januray")
+			if (month == "January")
 				return 0;
 			if (month == "February")
 				return 1;
@@ -264,15 +264,29 @@ namespace WeatherMatrix {
 
 #pragma endregion
 	private: System::Void avgMonthEvent_Click(System::Object^  sender, System::EventArgs^  e) {
-
-		outputBox->Text = "hello";
+		int month = monthArrayValue(monthBox->Text);
+		if (month == -1)
+			MessageBox::Show("No Month Entered!");
+		outputBox->Text = System::Convert::ToString(WeatherMatrix.avgOfMonth(month));
+		
 	}
 	private: System::Void highestMonthEvent_Click(System::Object^  sender, System::EventArgs^  e) {
+		int month = monthArrayValue(monthBox->Text);
+		if (month == -1)
+			MessageBox::Show("No Month Entered!");
+		outputBox->Text = System::Convert::ToString(WeatherMatrix.highestMonth(month));
 	}
+
 	private: System::Void avgYearEvent_Click(System::Object^  sender, System::EventArgs^  e) {
+		int year = yearArrayValue(yearBox->Text);
+		outputBox->Text = System::Convert::ToString(WeatherMatrix.avgOfyear(year));
 	}
+
 	private: System::Void highestYearEvent_Click(System::Object^  sender, System::EventArgs^  e) {
+		int year = yearArrayValue(yearBox->Text);
+		outputBox->Text = System::Convert::ToString(WeatherMatrix.highestInYear(year));
 	}
+
 	private: System::Void dateTempEvent_Click(System::Object^  sender, System::EventArgs^  e) {
 		int year = yearArrayValue(yearBox->Text);
 		int month = monthArrayValue(monthBox->Text);
