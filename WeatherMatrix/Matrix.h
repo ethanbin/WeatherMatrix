@@ -1,7 +1,6 @@
 #pragma once
 #include<fstream>
 #include<iostream>
-//using namespace std;
 
 class Matrix
 {
@@ -29,7 +28,6 @@ public:
 			M._rowCount++;
 			M._columnCount = 0;
 		}
-
 		return input;
 	}
 

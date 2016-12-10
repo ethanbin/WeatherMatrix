@@ -28,14 +28,12 @@ Matrix::~Matrix()
 std::string Matrix::testProperReadin()
 {
 	std::string sendBack = "";
-
 	for (int i = 0; i < _height; i++)
 	{
 		for (int j = 0; j < _length; j++)
 			sendBack += std::to_string(_myArr[i][j]) + "\t";
 		sendBack += "\n\n";
 	}
-
 	return sendBack;
 }
 
@@ -43,7 +41,6 @@ void Matrix::operator = (const Matrix & copyFrom)
 {
 	_height = copyFrom._height;
 	_length = copyFrom._length;
-
 	_myArr = new double*[_height];
 
 	for (int i = 0; i < _height; i++)
@@ -66,13 +63,10 @@ double Matrix::highestMonth(int monthIndex) //find highest temperature of a mont
 {
 	double highestMonth = _myArr[0][monthIndex];
 	for (int i = 0; i < _height; i++)
-	{
 		if (highestMonth < _myArr[i][monthIndex])
 			highestMonth = _myArr[i][monthIndex];
-	}
 	return highestMonth;
 }
-
 
 double Matrix::avgOfyear(int yearIndex) //find average temperature of a year
 {

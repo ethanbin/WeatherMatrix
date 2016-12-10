@@ -125,7 +125,7 @@ namespace WeatherMatrix {
 			this->monthBox->Location = System::Drawing::Point(15, 18);
 			this->monthBox->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->monthBox->Name = L"monthBox";
-			this->monthBox->Size = System::Drawing::Size(140, 26);
+			this->monthBox->Size = System::Drawing::Size(140, 30);
 			this->monthBox->TabIndex = 1;
 			this->monthBox->Text = L"Select Month";
 			// 
@@ -133,10 +133,10 @@ namespace WeatherMatrix {
 			// 
 			this->yearBox->Location = System::Drawing::Point(181, 19);
 			this->yearBox->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
-			this->yearBox->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 2015, 0, 0, 0 });
+			this->yearBox->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 2012, 0, 0, 0 });
 			this->yearBox->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1869, 0, 0, 0 });
 			this->yearBox->Name = L"yearBox";
-			this->yearBox->Size = System::Drawing::Size(140, 23);
+			this->yearBox->Size = System::Drawing::Size(140, 26);
 			this->yearBox->TabIndex = 2;
 			this->yearBox->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1869, 0, 0, 0 });
 			// 
@@ -201,13 +201,13 @@ namespace WeatherMatrix {
 			this->outputBox->Location = System::Drawing::Point(14, 299);
 			this->outputBox->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->outputBox->Name = L"outputBox";
-			this->outputBox->Size = System::Drawing::Size(308, 23);
+			this->outputBox->Size = System::Drawing::Size(308, 26);
 			this->outputBox->TabIndex = 8;
 			this->outputBox->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
 			// MyForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(7, 18);
+			this->AutoScaleDimensions = System::Drawing::SizeF(9, 22);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(337, 343);
 			this->Controls->Add(this->outputBox);
