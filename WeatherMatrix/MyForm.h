@@ -4,21 +4,28 @@
 #include<fstream>
 #include <msclr\marshal_cppstd.h>
 
- 
+using namespace System;
+using namespace System::ComponentModel;
+using namespace System::Collections;
+using namespace System::Windows::Forms;
+using namespace System::Data;
+using namespace System::Drawing;
+
 namespace WeatherMatrix {
-	Matrix WeatherMatrix;
-	using namespace System;
-	using namespace System::ComponentModel;
-	using namespace System::Collections;
-	using namespace System::Windows::Forms;
-	using namespace System::Data;
-	using namespace System::Drawing;
+
+
 
 	/// <summary>
 	/// Summary for MyForm
 	/// </summary>
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
+	private:
+		Matrix* WeatherMatrix;
+		int numLines;
+		static const int MONTHS_PER_YEAR = 12;
+		static const int firstYear = 1869;
+
 	public:
 		MyForm(std::string arg0)
 		{
@@ -34,26 +41,28 @@ namespace WeatherMatrix {
 				MessageBox::Show("ERROR: File not found!");
 				exit(EXIT_SUCCESS);
 			}
-
+			numLines = 0;
 			std::string lineCollector;
-			int numLines=0;
 			for (; !WeatherMatrixFile.eof(); numLines++) { getline(WeatherMatrixFile, lineCollector); }
-			Matrix readinMatrix(numLines, 12); //hardcoded this as 12 because there will always be just 12 months
+			WeatherMatrix = new Matrix(numLines, MONTHS_PER_YEAR);
+			yearBox->Minimum = firstYear;
+			yearBox->Maximum = firstYear + numLines - 1;
+
 
 			WeatherMatrixFile.clear();					//resets eof
 			WeatherMatrixFile.seekg(0, std::ios::beg);	//goes back to first line
 
 
-			for (int i = 0; i < readinMatrix.row(); i++)
+			for (int i = 0; i < WeatherMatrix->row(); i++)
 			{
-				for (int j = 0; j < readinMatrix.column(); j++)
+				for (int j = 0; j < WeatherMatrix->column(); j++)
 				{
-					WeatherMatrixFile >> readinMatrix;
+					WeatherMatrixFile >> *WeatherMatrix;
 					WeatherMatrixFile.ignore();
 				}
 
 			}
-			WeatherMatrix = readinMatrix;
+
 			WeatherMatrixFile.close();
 		}
 
@@ -125,18 +134,19 @@ namespace WeatherMatrix {
 			this->monthBox->Location = System::Drawing::Point(15, 18);
 			this->monthBox->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->monthBox->Name = L"monthBox";
-			this->monthBox->Size = System::Drawing::Size(140, 30);
+			this->monthBox->Size = System::Drawing::Size(140, 26);
 			this->monthBox->TabIndex = 1;
 			this->monthBox->Text = L"Select Month";
-			// 
+			// Y
 			// yearBox
 			// 
+
 			this->yearBox->Location = System::Drawing::Point(181, 19);
 			this->yearBox->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
-			this->yearBox->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 2012, 0, 0, 0 });
-			this->yearBox->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1869, 0, 0, 0 });
+			//this->yearBox->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { numLines+firstYear-1, 0, 0, 0 }); created in constructor
+			//this->yearBox->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { firstYear, 0, 0, 0 });			created in constructor
 			this->yearBox->Name = L"yearBox";
-			this->yearBox->Size = System::Drawing::Size(140, 26);
+			this->yearBox->Size = System::Drawing::Size(140, 23);
 			this->yearBox->TabIndex = 2;
 			this->yearBox->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 1869, 0, 0, 0 });
 			// 
@@ -201,13 +211,13 @@ namespace WeatherMatrix {
 			this->outputBox->Location = System::Drawing::Point(14, 299);
 			this->outputBox->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
 			this->outputBox->Name = L"outputBox";
-			this->outputBox->Size = System::Drawing::Size(308, 26);
+			this->outputBox->Size = System::Drawing::Size(308, 23);
 			this->outputBox->TabIndex = 8;
 			this->outputBox->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			// 
 			// MyForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(9, 22);
+			this->AutoScaleDimensions = System::Drawing::SizeF(7, 18);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(337, 343);
 			this->Controls->Add(this->outputBox);
@@ -268,25 +278,24 @@ namespace WeatherMatrix {
 		if (month == -1)
 			MessageBox::Show("No Month Entered!");
 		else
-			outputBox->Text = System::Convert::ToString(WeatherMatrix.avgOfMonth(month));
-		
+			outputBox->Text = System::Convert::ToString(WeatherMatrix->avgOfMonth(month));
 	}
 	private: System::Void highestMonthEvent_Click(System::Object^  sender, System::EventArgs^  e) {
 		int month = monthArrayValue(monthBox->Text);
 		if (month == -1)
 			MessageBox::Show("No Month Entered!");
 		else
-			outputBox->Text = System::Convert::ToString(WeatherMatrix.highestMonth(month));
+			outputBox->Text = System::Convert::ToString(WeatherMatrix->highestMonth(month));
 	}
 
 	private: System::Void avgYearEvent_Click(System::Object^  sender, System::EventArgs^  e) {
 		int year = yearArrayValue(yearBox->Text);
-		outputBox->Text = System::Convert::ToString(WeatherMatrix.avgOfyear(year));
+		outputBox->Text = System::Convert::ToString(WeatherMatrix->avgOfyear(year));
 	}
 
 	private: System::Void highestYearEvent_Click(System::Object^  sender, System::EventArgs^  e) {
 		int year = yearArrayValue(yearBox->Text);
-		outputBox->Text = System::Convert::ToString(WeatherMatrix.highestInYear(year));
+		outputBox->Text = System::Convert::ToString(WeatherMatrix->highestInYear(year));
 	}
 
 	private: System::Void dateTempEvent_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -295,7 +304,7 @@ namespace WeatherMatrix {
 		if (month == -1)
 			MessageBox::Show("No Month Entered!");
 		else
-			outputBox->Text = System::Convert::ToString(WeatherMatrix.monthTemp(year,month));
+			outputBox->Text = System::Convert::ToString(WeatherMatrix->monthTemp(year, month));
 	}
-};
+	};
 }
