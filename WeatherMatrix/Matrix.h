@@ -21,7 +21,7 @@ public:
 
 	friend std::istream &operator >> (std::istream  &input, Matrix &M)
 	{
-		if (M._columnCount > M._length || M._rowCount > M._height)
+		if (M._columnCount > M._numColumns || M._rowCount > M._numRows)
 			throw("Istream operator input exceeded Matrix bounds");
 
 		input >> M._myArr[M._rowCount][M._columnCount];
@@ -31,19 +31,15 @@ public:
 			M._rowCount++;
 			M._columnCount = 0;
 		}
-
 		return input;
 	}
 
 private:
 	double **_myArr;
-	int _length, _height;
+	int _numColumns, _numRows;
 	int _columnCount = 0, _rowCount = 0;
 
 public:
-	int length() const { return _length; }
-	int column() const { return _length; }
-
-	int height() const { return _height; }
-	int row() const { return _height; }
+	int numColumns() const { return _numColumns; }
+	int numRows() const { return _numRows; }
 };

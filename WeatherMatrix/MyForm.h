@@ -53,9 +53,9 @@ namespace WeatherMatrix {
 			WeatherMatrixFile.seekg(0, std::ios::beg);	//goes back to first line
 
 
-			for (int i = 0; i < WeatherMatrix->row(); i++)
+			for (int i = 0; i < WeatherMatrix->numRows(); i++)
 			{
-				for (int j = 0; j < WeatherMatrix->column(); j++)
+				for (int j = 0; j < WeatherMatrix->numColumns(); j++)
 				{
 					WeatherMatrixFile >> *WeatherMatrix;
 					WeatherMatrixFile.ignore();
